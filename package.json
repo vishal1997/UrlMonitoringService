@@ -12,6 +12,8 @@
   "private": true,
   "dependencies": {
     "mongoose": "^5.3.14",
+    "mongoose-unique-validator": "^2.0.2",
+    "sync": "^0.2.5",
     "tail": "^2.0.1"
   },
   "devDependencies": {}
