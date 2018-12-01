@@ -5,27 +5,27 @@ var UrlMonitor = require('../model/UrlMonitor');
 
 var dao = {};
 
-dao.getAllMonitoredUrl = function() {
+dao.getAllMonitoredUrl = function(callback) {
     Url.find({}, function(err, data) {
         if(!err) {
-            return data;
+            callback(200, data);
         } else {
-            console.log('Error while getting url details');
+            callback(200, {'res' :'No data found'});
         }
     })
 }
 
-dao.getUrlDetailsById = function(id) {
+dao.getUrlDetailsById = function(id, callback) {
     UrlMonitor.findOne({'id' : id}, function(err, data) {
         if(!err) {
-            return data.latencyList;
+            callback(200, data.latencyList);
         } else {
-            console.log('Error while geting latencyList of ', id);
+            callback(200, {"Error" : "No data found"});
         }
     })
 }
 
-dao.addDataToUrlModel = function(data) {
+dao.addDataToUrlModel = function(data, callback) {
     
     newUrl = new Url({
         id : data.id,
@@ -38,53 +38,46 @@ dao.addDataToUrlModel = function(data) {
     newUrl.save(function(err) {
         if(!err) {
             console.log("new url added to db");
-
-            urlMonitor = new UrlMonitor({
-                'id' : newUrl.id,
-                'url' : newUrl.url,
-                'latencyList' : []
-            })
-
-            urlMonitor.save(function(err) {
-                if(!err) {
-                    return newUrl.id;
-                } else {
-                    return newUrl.id;
-                }
-            })
+            callback(200, {"id": newUrl.id});
         } else {
-            console.log("Url already exist");
-            return "Url already monitored";
+            callback(500, {'info': "Unable to save url in the database"});
         }
     });
 }
 
-dao.deleteUrl = function(urlId) {
-    console.log(urlId);
-    Url.find({'id': urlId}).deleteOne().exec();
+dao.deleteUrl = function(urlId, callback) {
+
+    Url.find({'id': urlId}).deleteOne().exec(function(err) {
+        if(!err) {
+            callback(200, {'success' : true});
+        } else {
+            callback(500, {'sucess' : false});
+        }
+    });
 }
 
-dao.updateUrlData = function(id, updatedData) {
-    Url.findOneAndUpdate(id, {
+dao.updateUrlData = function(id, updatedData, callback) {
+
+    Url.findOneAndUpdate(id, {$set:{
         'url' : updatedData.url,
         'data' : updatedData.data
-    }, function(err, data){
+    }},{new : true}, function(err, data){
         if(!err) {
-            return {'data updated ' : updatedData};
+            callback(200, {'id ' : id});
         } else {
-            console.log('error updating the url details for id ' ,id);
+            callback(500, {'erro ' : 'error updating the url details for id '+id});
         }
     })
 }
 
-dao.addLatencyDetailsToLatencyList = function(data) {
-    UrlMonitor.findOneAndUpdate({'id' : data.id}, 
+dao.addLatencyDetailsToLatencyList = function(data, callback) {
+    UrlMonitor.findOneAndUpdate({'id' : '9ew2v5kpnn'}, 
                                 {$push :{latencyList: data.latencyList}},
                                 function(err,succ) {
         if(!err) {
-            console.log("Successfully added data to latencyList");
+            callback({'res' : "Successfully added data to latencyList"});
         } else {
-            console.log("Error adding data to latencyList");
+            callback({'res' : "Error adding data to latencyList"});
         }
     });
 }
