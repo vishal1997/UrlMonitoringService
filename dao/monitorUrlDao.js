@@ -60,7 +60,7 @@ monitorUrlDao.getUrlDetailsById = function(id, callback) {
 }
 
 monitorUrlDao.addLatencyDetailsToLatencyList = function(data, callback) {
-    UrlMonitor.findOneAndUpdate({'_id' : 'df387nfx7s'}, 
+    UrlMonitor.findOneAndUpdate({'_id' : '3ghi60zscb'}, 
                                 {$push :{latencyList: data.latencyList}},
                                 function(err,res) {
         if(!err && res) {

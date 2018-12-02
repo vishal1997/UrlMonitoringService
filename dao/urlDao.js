@@ -7,9 +7,9 @@ var urlDao = {}
 urlDao.getAllMonitoredUrl = function(callback) {
     Url.find({}, function(err, data) {
         if(!err) {
-            callback(200, data);
+            callback(data);
         } else {
-            callback(500, {'error' :'No data found'});
+            callback(false);
         }
     })
 }
