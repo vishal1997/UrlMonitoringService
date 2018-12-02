@@ -62,9 +62,9 @@ urlDao.addDataToUrlModel = function(data, callback) {
     newUrl.save(function(err) {
         if(!err) {
             console.log("new url added to db");
-            callback(200, {"_id": newUrl._id});        
+            callback({"_id": newUrl._id});        
         } else {
-            callback(500, {'error': "Unable to save url in the database"});
+            callback(false);
         }
     });
 }
