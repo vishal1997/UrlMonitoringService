@@ -3,7 +3,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 var urlMonitor = new Schema({
-    _id : {type:String, index: true},
+    _id : String,
     url : String,
     latencyList : [{
         'timestamp' : Date,

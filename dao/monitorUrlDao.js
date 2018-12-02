@@ -21,7 +21,6 @@ monitorUrlDao.addUrlData = function(id, callback) {
 }
 
 monitorUrlDao.getUrlDetailsById = function(id, callback) {
-    console.log("Getting URL details for ID: " , id);
     UrlMonitor.aggregate([
         {
             "$match" : {
@@ -51,7 +50,6 @@ monitorUrlDao.getUrlDetailsById = function(id, callback) {
     ], function(err, res) {
         if (!err && res && res.length !== 0) {
             let response = res[0];
-            console.log("Reponse for Id - ", id, response);
             callback(response);
         } else {
             callback(false)
@@ -59,8 +57,18 @@ monitorUrlDao.getUrlDetailsById = function(id, callback) {
     });
 }
 
+monitorUrlDao.deleteUrl = function(urlId, callback) {
+    UrlMonitor.find({'_id': urlId}).deleteOne().exec(function(err) {
+        if(!err) {
+            callback({'success' : true});
+        } else {
+            callback({'success' : false});
+        }
+    });
+} 
+
 monitorUrlDao.addLatencyDetailsToLatencyList = function(data, callback) {
-    UrlMonitor.findOneAndUpdate({'_id' : '3ghi60zscb'}, 
+    UrlMonitor.findOneAndUpdate({'_id' : data._id}, 
                                 {$push :{latencyList: data.latencyList}},
                                 function(err,res) {
         if(!err && res) {

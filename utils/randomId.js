@@ -1,7 +1,8 @@
-
+var urlDao = require('../dao/urlDao');
+var Url = require('../model/Url');
 var randomId = {};
 
-randomId.createRandomId = function(strLength){
+randomId.createRandomString = function(strLength){
     strLength = typeof(strLength) == 'number' && strLength > 0 ? strLength : false;
     if(strLength){
       // Define all the possible characters that could go into a string
@@ -21,5 +22,18 @@ randomId.createRandomId = function(strLength){
       return false;
     }
   };
+
+  randomId.createRandomId = function(strLength) {
+
+    var id = randomId.createRandomString(strLength);
+    urlDao.getUrlInfoById(id, function(err, data) {
+      if(!err && data) {
+      
+      } else {
+          randomId.createRandomId(strLength);
+      }
+    });
+    return id;
+  }
 
   module.exports = randomId;
