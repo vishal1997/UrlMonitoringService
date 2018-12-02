@@ -2,6 +2,10 @@ var urlDao = require('../dao/urlDao');
 var Url = require('../model/Url');
 var randomId = {};
 
+/**
+ * @param strLength: Length of the random generated string.
+ * Create random string 
+ */
 randomId.createRandomString = function(strLength){
     strLength = typeof(strLength) == 'number' && strLength > 0 ? strLength : false;
     if(strLength){
@@ -23,6 +27,10 @@ randomId.createRandomString = function(strLength){
     }
   };
 
+  /**
+   * @param strLength: Length of the random generated Id generated.
+   * Create random id, If the Id already exists then generate new Id.
+   */
   randomId.createRandomId = function(strLength) {
 
     var id = randomId.createRandomString(strLength);
@@ -36,4 +44,7 @@ randomId.createRandomString = function(strLength){
     return id;
   }
 
+  /**
+   * Export the module
+   */
   module.exports = randomId;

@@ -6,6 +6,9 @@ const url = 'mongodb://user123:user123@ds121624.mlab.com:21624/url_monitor';
 mongooseClient.set('useCreateIndex', true);
 var mongoose = {};
 
+/**
+ * Connect to the database server
+ */
 mongoose.connect = function() {
     mongooseClient.connect(url, options, function(error) {
         if (!error) {
@@ -16,4 +19,7 @@ mongoose.connect = function() {
     });
 }
 
+/**
+ * Export module
+ */
 module.exports = mongoose;

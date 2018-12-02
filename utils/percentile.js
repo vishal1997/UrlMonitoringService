@@ -15,6 +15,9 @@ var percentile = {
     }]
 }
 
+/**
+ * Get the percentile 
+ */
  percentile.getPercentileInfo = function (percentiles, array) {
     var res = {};
     // Cloning as we dont want the latency to be sorted. 
@@ -27,4 +30,7 @@ var percentile = {
     return res;
 }
 
+/**
+ * Export the module
+ */
 module.exports = percentile;
