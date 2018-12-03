@@ -29,8 +29,7 @@ Given information (URL, method, data, headers), the server monitors the URL ever
 
 ### Diagram
 ![Solid](https://lh3.googleusercontent.com/g9OTSRoW1nLNvJ6N1Nd_ifOqUcF2k884gUiGhUkmWykbz7IwanesTMU4gw2XPLpM9AE7rNonYdFG5A=w1366-h626)
-Diagram:  https://lh3.googleusercontent.com/g9OTSRoW1nLNvJ6N1Nd_ifOqUcF2k884gUiGhUkmWykbz7IwanesTMU4gw2XPLpM9AE7rNonYdFG5A=w1366-h626
-
+Diagram:  https://drive.google.com/file/d/1cywlABpI1wSm_RIFdrkgEENcNIj9GarZ/view?usp=sharing
 ##### Server/Request Handler
 - It accepts the user request:
     - If the request is GET/, it fetchs all the url stored in the url collection.
