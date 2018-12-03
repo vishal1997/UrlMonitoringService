@@ -28,7 +28,8 @@ Given information (URL, method, data, headers), the server monitors the URL ever
 - The call will be GET /
 
 ### Diagram
-![Screenshot](https://lh3.googleusercontent.com/g9OTSRoW1nLNvJ6N1Nd_ifOqUcF2k884gUiGhUkmWykbz7IwanesTMU4gw2XPLpM9AE7rNonYdFG5A=w1366-h626)
+![Solid](https://lh3.googleusercontent.com/g9OTSRoW1nLNvJ6N1Nd_ifOqUcF2k884gUiGhUkmWykbz7IwanesTMU4gw2XPLpM9AE7rNonYdFG5A=w1366-h626)
+Diagram:  https://lh3.googleusercontent.com/g9OTSRoW1nLNvJ6N1Nd_ifOqUcF2k884gUiGhUkmWykbz7IwanesTMU4gw2XPLpM9AE7rNonYdFG5A=w1366-h626
 
 ##### Server/Request Handler
 - It accepts the user request:
